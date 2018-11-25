@@ -1,0 +1,52 @@
+<div class="col-md-6">  
+  <h2 class="text-center">{{bookformlabel}}</h2>  
+  <form [formGroup]="addForm" novalidate class="form">
+
+      <div class="form-group">  
+          <input readonly type="hidden" formControlName="id" placeholder="Book Id" name="bookId" class="form-control" id="bookId">  
+        </div>  
+
+    <div class="form-group">  
+      <label for="bookTitle">Book Title:</label>  
+      <input formControlName="title" placeholder="Book Title" name="bookTitle" class="form-control" id="bookTitle">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('title').hasError('required') && addForm.get('title').touched">  
+        Book Title is required  
+      </div>  
+    </div>  
+  
+    <div class="form-group">  
+      <label for="bookAuthor">Book Author:</label>  
+      <input formControlName="author" placeholder="Book Author" name="bookAuthor" class="form-control" id="bookAuthor">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('author').hasError('required') && addForm.get('author').touched">  
+        Book Author is required  
+      </div>  
+    </div>  
+  
+    <div class="form-group">  
+      <label for="bookYear">Book Year:</label>  
+      <input formControlName="year" placeholder="Book Year" name="bookYear" class="form-control" id="bookYear">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('year').hasError('required') && addForm.get('year').touched">  
+        Book Year is required  
+      </div>  
+    </div>
+
+    <div class="form-group" *ngIf="availableVisibility">  
+      <label for="bookAvailable">Available:</label>
+      <input [checked]="true" formControlName="available" disabled="disabled" placeholder="Available" name="bookAvailable" id="bookAvailable" class="form-control" type="checkbox">
+    </div>
+
+    <div class="form-group">  
+      <label for="bookStatus">Status:</label>
+      <select class="form-control" id="bookStatus" name="bookStatus" formControlName="status">
+        <option *ngFor="let s of status" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success" [disabled]='addForm.invalid' *ngIf="btnvisibility" (click)="onSubmit()">Save</button>  
+    <button class="btn btn-success" [disabled]='addForm.invalid' *ngIf="!btnvisibility" (click)="onUpdate()">Update</button>  
+  
+    <p>Form value: {{ addForm.value | json }}</p>  
+  </form>  
+</div>
+
+  

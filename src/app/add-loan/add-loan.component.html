@@ -1,0 +1,66 @@
+<div class="col-md-6">  
+  <h2 class="text-center">{{loanformlabel}}</h2>  
+  <form [formGroup]="addForm" novalidate class="form">
+
+      <div class="form-group">  
+          <input readonly type="hidden" formControlName="id" placeholder="Loan Id" name="loanId" class="form-control" id="loanId">  
+        </div>  
+
+    <div class="form-group">  
+      <label for="bookId">Book Id:</label>  
+      <input readonly formControlName="bookId" placeholder="Book Id" name="bookID" class="form-control" id="bookId">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('bookId').hasError('required') && addForm.get('bookId').touched">  
+        Book Id is required  
+      </div>  
+    </div>
+
+    <div class="form-group">  
+      <label for="bookName">Book Title:</label>
+      <input readonly formControlName="bookTitle" placeholder="Book Title" name="bookTitle" class="form-control" id="bookTitle"> 
+    </div>  
+
+    <div class="form-group" *ngIf="userInfoVisibility">  
+      <label for="userInfos">User Surname:</label>
+      
+      <input [formControl]="queryField" formControlName="userInfos" placeholder="Search for User..." name="userInfos" class="form-control" id="userInfos">
+      <ul class="filter-select">
+          <li *ngFor="let result of results" class="filter-select-list" alt="" width="50" height="50"><p class="form-control" (click)="setUser(result.id,result.surname,result.name)">
+            {{result.surname}} {{result.name}}</p>
+      </ul>
+    </div>
+
+    <div class="form-group">  
+        <label for="userId">User Id:</label>  
+        <input readonly formControlName="userId" placeholder="User Id" name="userId" class="form-control" id="userId">
+        <div class="alert  alert-danger" *ngIf="addForm.get('userId').hasError('required')">  
+            Please search the user by Surname 
+          </div>  
+      </div>
+  
+    <div class="form-group">  
+      <label for="startDate">Start Date:</label>  
+      <input type="date" formControlName="startDate" placeholder="Start Date" name="startDate" class="form-control" id="startDate">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('startDate').hasError('required') && addForm.get('startDate').touched">  
+        Start Date is required  
+      </div>  
+    </div>
+
+    <div class="form-group">  
+      <label for="endDate">End Date:</label>  
+      <input type="date" formControlName="endDate" placeholder="End Date" name="endDate" class="form-control" id="endDate">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('endDate').hasError('required') && addForm.get('endDate').touched">  
+        End Date is required  
+      </div>  
+    </div>
+
+    <div class="form-group" *ngIf="closedVisibility">  
+      <label for="closed">Close Loan:</label>  
+      <input type="checkbox" [checked]="false" formControlName="closed" placeholder="Closed" name="closed" class="form-control" id="closed">  
+    </div>  
+
+    <button class="btn btn-success" [disabled]='addForm.invalid' *ngIf="btnvisibility" (click)="onSubmit()">Save</button>  
+    <button class="btn btn-success" [disabled]='addForm.invalid' *ngIf="!btnvisibility" (click)="onUpdate()">Update</button>  
+  
+    <p>Form value: {{ addForm.value | json }}</p>  
+  </form>  
+</div>

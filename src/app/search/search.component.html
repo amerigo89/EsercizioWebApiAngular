@@ -1,0 +1,39 @@
+<form [formGroup]="searchForm" align="center">
+    <div align="center" FormControlName="bookFilters" *ngIf="bookVisibility">
+        <label>Search by:</label>
+        <input type="radio" checked="checked" name="filter" style="margin-left: 20px;" id="radio1" value="{{radioCaption1}}" (change)="radioChange($event)"/>
+        <label>{{radioCaption1}}</label>
+        <input type="radio" name="filter" style="margin-left: 20px;" id="radio2" value="{{radioCaption2}}" (change)="radioChange($event)"/>
+        <label>{{radioCaption2}}</label>
+    </div>
+
+    <!--
+    <div align="center" FormControlName="userFilters" *ngIf="userVisibility">
+        <label>Search by:</label>
+        <input type="radio" checked="checked" name="filter" style="margin-left: 20px;" id="radioSurname" value="Surname" (change)="radioChange($event)"/>
+        <label>Surname</label>
+        <input type="radio" name="filter" style="margin-left: 20px;" id="radioName" value="Name" (change)="radioChange($event)"/>
+        <label>Name</label>
+    </div>
+    -->
+
+</form>
+
+
+<section class="filter-wrapper">
+  <div class="keyword-wrapper">
+ <input [formControl]="queryField" type="text" id="keyword" placeholder="{{placeHolder}}" autofocus/>
+   </div>
+ <ul class="filter-select" *ngIf="filterByTitle">
+  <li *ngFor="let result of results" class="filter-select-list" width="50" height="50" [routerLink]="['/books/'+result.id]">
+     {{result.title}}  |  {{result.author}}  |  {{result.id}}</li>
+</ul>
+<ul class="filter-select" *ngIf="!filterByTitle">
+    <li *ngFor="let result of results" class="filter-select-list" width="50" height="50" [routerLink]="['/books/'+result.id]">
+        {{result.author}}  |  {{result.title}}  |  {{result.id}}</li>
+  </ul>
+  <ul class="filter-select" *ngIf="!searchBooks">
+      <li *ngFor="let result of results" class="filter-select-list" width="50" height="50" [routerLink]="['/books/'+result.id]">
+          {{result.surname}} {{result.name}}  |  {{result.id}}</li>
+    </ul>
+</section>

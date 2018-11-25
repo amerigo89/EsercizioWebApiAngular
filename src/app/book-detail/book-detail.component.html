@@ -1,0 +1,33 @@
+<div>
+  
+<h1 align="center">Book Details:</h1>
+
+<div>
+  <table align="center">
+    <tr>
+      <th>Id: </th><td>{{book?.id}}</td>
+    </tr>
+    <tr>
+      <th>Title: </th><td>{{book?.title}}</td>
+    </tr>
+    <tr>
+      <th>Year: </th><td>{{book?.year}}</td>
+    </tr>
+    <tr>
+      <th>Author: </th><td>{{book?.author}}</td>
+    </tr>
+    <tr>
+      <th>Available: </th><td>{{book?.available}}</td>
+    </tr>
+    <tr>
+      <th>Status: </th><td>{{book?.status}}</td>
+    </tr>
+  </table>
+  <div align="center">
+      <button (click)="createLoan(book.id)" class="btn btn-info"> Lend</button>
+      <button (click)="deleteBook(book.id)" style="margin-left: 20px;" class="btn btn-info"> Delete on DB</button>
+  </div>
+    
+  </div>
+  
+  </div>

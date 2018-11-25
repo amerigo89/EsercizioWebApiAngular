@@ -1,0 +1,58 @@
+<div class="col-md-12">  
+  <h2> Book List 
+    <button (click)="addBook()" style="margin-left: 20px;" class="btn btn-info">Add Book</button> 
+    <button (click)="ngOnInit()" style="margin-left: 20px;" class="btn btn-info">Books List</button>
+  </h2>
+
+  <br>
+    <app-search></app-search>
+  <br>
+
+    <div class="table-responsive table-container">  
+    <table class="table">  
+      <thead>  
+        <tr>  
+          <th>Id</th>  
+          <th>Title</th>  
+          <th>Author</th>  
+          <th>Year</th>
+          <th>Available</th>
+          <th>Status</th>
+          <th>    
+            <input type="checkbox" name="filterStored" id="filterStored" (change)="filterStored($event)">Show all Books<br>
+          </th>
+        </tr>  
+      </thead>  
+      <tbody>  
+        <tr *ngFor="let book of books">  
+          <td class="hidden">{{book.id}}</td> 
+          <td>{{book.title}}</td>  
+          <td>{{book.author}}</td> 
+          <td>{{book.year}}</td> 
+          <td>{{book.available}}</td>
+          <td>{{book.status}}</td>
+          <td>  
+            <button (click)="editBook(book.id)" style="margin-left: 20px;" class="btn btn-info"> Edit</button>
+            <!--<button (click)="createLoan(book.id)" style="margin-left: 20px;" class="btn btn-info"> Borrow</button>-->
+            <button (click)="bookDetail(book.id)" style="margin-left: 20px;" class="btn btn-info"> Details</button>
+            <button (click)="newLoan(book)" style="margin-left: 20px;" class="btn btn-info"> New Loan</button>
+          </td>
+        </tr>  
+      </tbody>  
+    </table>  
+  </div>
+</div>
+
+<div id="search-component" align="center">
+    <h4>Book Search</h4>
+   
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+   
+    <ul class="search-result">
+      <li *ngFor="let book of books$ | async" [class.selected]="book === selectedBook" (click)="onSelect(book)">
+      <a [routerLink]="['/books/'+book.id]">
+          {{book.title}}
+        </a>
+      </li>
+    </ul>
+  </div>

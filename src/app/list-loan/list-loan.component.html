@@ -1,0 +1,44 @@
+<div class="col-md-12">
+  <h2> Loans Details 
+    <!--<button (click)="addLoan()" style="margin-left: 20px;" class="btn btn-info">Add Loan</button> -->
+    <button (click)="ngOnInit()" style="margin-left: 20px;" class="btn btn-info">Loans List</button>
+  </h2>
+  <div class="table-responsive table-container">  
+    <table class="table">  
+      <thead>  
+        <tr>  
+          <th>Id</th>  
+
+          <th>Book Id</th>
+          <th>Book Title</th>
+          <th>User Id</th> 
+          <th>User</th>
+          <th>Loan Start</th>
+          <th>Loan End</th>
+          <th>Closed</th>
+          <th>    
+            <input type="checkbox" name="filterClosed" id="filterClosed" (change)="filterClosed($event)">Show closed Loans<br>
+          </th>
+        </tr>  
+      </thead>  
+      <tbody>  
+        <tr *ngFor="let loan of loans, let i = index">  
+          <td class="hidden">{{loan.id}}</td>
+
+          <td>{{loan.bookId}}</td>
+          <td>{{books[i]?.title}}</td>
+          <td>{{loan.userId}}</td>
+          <td>{{users[i]?.surname}} {{users[i]?.name}}</td>
+          <td>{{loan.startDate | date : "dd/MM/y" }}</td> 
+          <td>{{loan.endDate | date : "dd/MM/y"}}</td> 
+          <td>{{loan.closed}}</td>
+          <td>
+            <button (click)="closeLoan(loan.id)" class="btn btn-info"> Close Loan</button>  
+            <!--<button (click)="editLoan(loan.id)" style="margin-left: 20px;" class="btn btn-info"> Edit</button>-->
+            <button (click)="editLoanNew(loan)" style="margin-left: 20px;" class="btn btn-info"> Edit</button>
+          </td>
+        </tr>  
+      </tbody>  
+    </table>  
+  </div>
+</div>

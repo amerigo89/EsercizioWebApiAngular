@@ -1,0 +1,78 @@
+<div class="col-md-6">  
+  <h2 class="text-center">{{userformlabel}}</h2>  
+  <form [formGroup]="addForm" novalidate class="form">
+
+      <div class="form-group">  
+          <input readonly type="hidden" formControlName="id" placeholder="User Id" name="userId" class="form-control" id="userId">  
+        </div>  
+
+    <div class="form-group">  
+      <label for="userName">Name:</label>  
+      <input formControlName="name" placeholder="Name" name="userName" class="form-control" id="userName">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('name').hasError('required') && addForm.get('name').touched">  
+        Name is required  
+      </div>  
+    </div>  
+  
+    <div class="form-group">
+      <label for="userSurname">Surname:</label>  
+      <input formControlName="surname" placeholder="Surname" name="userSurname" class="form-control" id="userSurname">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('surname').hasError('required') && addForm.get('surname').touched">  
+        Surname is required  
+      </div>  
+    </div>  
+  
+    <div class="form-group">  
+      <label for="userDateOfBirth">Date Of Birth:</label>  
+      <input type="date" formControlName="dateOfBirth" placeholder="Date Of Birth" name="dateOfBirth" class="form-control" id="dateOfBirth">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('dateOfBirth').hasError('required') && addForm.get('dateOfBirth').touched">  
+        Date Of Birth is required  
+      </div>  
+    </div>
+    
+    <div class="form-group">  
+      <label for="userPhone">Phone Number:</label>  
+      <input formControlName="phone" placeholder="Phone Number" name="userPhone" class="form-control" id="userPhone">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('phone').hasError('required') && addForm.get('phone').touched">  
+        Phone Number is required  
+      </div>  
+    </div>
+
+    <div class="form-group">  
+      <label for="userEmail">Email:</label>  
+      <input formControlName="email" placeholder="Email" name="userEmail" class="form-control" id="userEmail">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('email').hasError('required') && addForm.get('email').touched">  
+        Email is required  
+      </div>  
+    </div>
+
+    <div class="form-group">  
+      <label for="userCity">City:</label>  
+      <input formControlName="city" placeholder="City" name="userCity" class="form-control" id="userCity">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('city').hasError('required') && addForm.get('city').touched">  
+        City is required  
+      </div>  
+    </div>  
+
+    <div class="form-group">  
+      <label for="userAddress">Address:</label>  
+      <input formControlName="address" placeholder="Address" name="userAddress" class="form-control" id="userAddress">  
+      <div class="alert  alert-danger" *ngIf="addForm.get('address').hasError('required') && addForm.get('address').touched">  
+        Address is required  
+      </div>  
+    </div>
+    
+    <div class="form-group" *ngIf="statusVisibility">  
+      <label for="userStatus">Status:</label>
+      <select class="form-control" id="userStatus" name="userStatus" formControlName="status">
+        <option *ngFor="let s of status" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+
+
+    <button class="btn btn-success" [disabled]='addForm.invalid' *ngIf="btnvisibility" (click)="onSubmit()">Save</button>  
+    <button class="btn btn-success" [disabled]='addForm.invalid' *ngIf="!btnvisibility" (click)="onUpdate()">Update</button>  
+  
+    <p>Form value: {{ addForm.value | json }}</p>  
+  </form>  
+</div>  

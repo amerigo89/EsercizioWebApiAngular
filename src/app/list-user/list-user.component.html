@@ -1,0 +1,49 @@
+<div class="col-md-12">  
+  <h2> Users Details 
+    <button (click)="addUser()" style="margin-left: 20px;" class="btn btn-info">Add User</button> 
+    <button (click)="ngOnInit()" style="margin-left: 20px;" class="btn btn-info">Users List</button>
+  </h2>
+
+  <br>
+    <app-search></app-search>
+  <br>
+
+  <div class="table-responsive table-container">  
+    <table class="table">  
+      <thead>  
+        <tr>  
+          <th>Id</th>  
+          <th>Name</th>  
+          <th>Surname</th>  
+          <th>Date Of Birth</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Address</th>
+          <th>Status</th>
+          <th>    
+              <input type="checkbox" name="filterActive" id="filterActive" (change)="filterActive($event)">Show all Users<br>
+            </th>
+        </tr>  
+      </thead>  
+      <tbody>  
+        <tr *ngFor="let user of users">  
+          <td class="hidden">{{user.id}}</td> 
+          <td>{{user.name}}</td>  
+          <td>{{user.surname}}</td> 
+          <td>{{user.dateOfBirth | date : "dd/MM/yyyy" }}</td> 
+          <td>{{user.phone}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.city}}</td>
+          <td>{{user.address}}</td>
+          <td>{{user.status}}</td>
+          <td>  
+            <button (click)="setUserCancelled(user.id)" class="btn btn-info"> Delete</button>  
+            <button (click)="editUser(user.id)" style="margin-left: 20px;" class="btn btn-info"> Edit</button>
+            <button (click)="getLoans(user)" style="margin-left: 20px;" class="btn btn-info"> Get Loans</button>
+          </td>
+        </tr>  
+      </tbody>  
+    </table>  
+  </div>
+</div>
